@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="dashboard-buyer.html">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Kishan Mitra</h2>
+                <div class="close-sidebar" id="closeSidebar">×</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <div class="avatar-placeholder">
+                        <span id="userInitials">BU</span>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">Buyer Name</h3>
+                    <p id="userType">Consumer</p>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="marketplace">Marketplace</a></li>
+                    <li><a href="#" class="nav-link" data-page="orders">My Orders</a></li>
+                    <li><a href="#" class="nav-link" data-page="messages">Messages</a></li>
+                    <li><a href="#" class="nav-link" data-page="favorites">Favorites</a></li>
+                    <li><a href="#" class="nav-link" data-page="account">Account</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline">Logout</button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 id="pageTitle">Marketplace</h1>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchProducts" placeholder="Search products...">
+                        <button id="searchButton" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="cart-icon" id="cartIcon">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="notification-bell">
+                        <span class="notification-count">2</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <span id="headerUserName">Buyer</span>
+                        <div class="dropdown-content">
+                            <a href="#" data-page="account">My Account</a>
+                            <a href="#" id="headerLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section id="marketplace" class="dashboard-page active">
+                    <div class="marketplace-container">
+                        <div class="filters-panel">
+                            <div class="filter-section">
+                                <h3>Filters</h3>
+                                <div class="filter-group">
+                                    <h4>Category</h4>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="catVegetables" name="category" value="Vegetables">
+                                            <label for="catVegetables">Vegetables</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="catFruits" name="category" value="Fruits">
+                                            <label for="catFruits">Fruits</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="catGrains" name="category" value="Grains">
+                                            <label for="catGrains">Grains</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="catPulses" name="category" value="Pulses">
+                                            <label for="catPulses">Pulses</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="catProcessed" name="category" value="Processed Goods">
+                                            <label for="catProcessed">Processed Goods</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <h4>Region</h4>
+                                    <select id="regionFilter">
+                                        <option value="">All Regions</option>
+                                        <option value="North">North India</option>
+                                        <option value="South">South India</option>
+                                        <option value="East">East India</option>
+                                        <option value="West">West India</option>
+                                        <option value="Central">Central India</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <h4>Price Range</h4>
+                                    <div class="price-range">
+                                        <div class="price-input">
+                                            <span class="currency">₹</span>
+                                            <input type="number" id="minPrice" min="0" placeholder="Min">
+                                        </div>
+                                        <span class="range-separator">-</span>
+                                        <div class="price-input">
+                                            <span class="currency">₹</span>
+                                            <input type="number" id="maxPrice" min="0" placeholder="Max">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <h4>Quality</h4>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="qualOrganic" name="quality" value="Organic">
+                                            <label for="qualOrganic">Organic</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="qualFresh" name="quality" value="Fresh">
+                                            <label for="qualFresh">Fresh</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="qualPremium" name="quality" value="Premium">
+                                            <label for="qualPremium">Premium</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="applyFilters" class="btn btn-primary">Apply Filters</button>
+                                <button id="resetFilters" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                        <div class="products-panel">
+                            <div class="products-header">
+                                <div class="sort-by">
+                                    <label for="sortOption">Sort by:</label>
+                                    <select id="sortOption">
+                                        <option value="price-asc">Price: Low to High</option>
+                                        <option value="price-desc">Price: High to Low</option>
+                                        <option value="name-asc">Name: A to Z</option>
+                                        <option value="name-desc">Name: Z to A</option>
+                                        <option value="newest">Newest First</option>
+                                    </select>
+                                </div>
+                                <div class="view-options">
+                                    <button class="view-option active" data-view="grid">Grid</button>
+                                    <button class="view-option" data-view="list">List</button>
+                                </div>
+                            </div>
+                            <div class="products-container grid-view" id="productsContainer">
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="productDetailModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="modalProductName">Product Name</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="product-detail-content">
+                                <div class="product-detail-left">
+                                    <div class="product-detail-image" id="modalProductImage"></div>
+                                    <div class="seller-info">
+                                        <h4>Seller Information</h4>
+                                        <p><strong>Name:</strong> <span id="modalSellerName">Farmer Name</span></p>
+                                        <p><strong>Location:</strong> <span id="modalSellerLocation">Location</span></p>
+                                        <button class="btn btn-outline" id="contactSellerBtn">Contact Seller</button>
+                                    </div>
+                                </div>
+                                <div class="product-detail-right">
+                                    <div class="product-info">
+                                        <div class="product-price">
+                                            <h4>Price:</h4>
+                                            <p>₹<span id="modalProductPrice">100</span> per kg</p>
+                                        </div>
+                                        <div class="product-condition">
+                                            <h4>Condition:</h4>
+                                            <p><span id="modalProductCondition">Fresh</span></p>
+                                        </div>
+                                        <div class="product-description">
+                                            <h4>Description:</h4>
+                                            <p id="modalProductDescription">Product description will appear here.</p>
+                                        </div>
+                                    </div>
+                                    <div class="order-form">
+                                        <h4>Place an Order</h4>
+                                        <form id="orderForm">
+                                            <input type="hidden" id="productId" name="productId">
+                                            <input type="hidden" id="sellerId" name="sellerId">
+                                            <div class="form-group">
+                                                <label for="orderQuantity">Quantity (in kg)</label>
+                                                <input type="number" id="orderQuantity" name="orderQuantity" min="1" value="1" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deliveryAddress">Delivery Address</label>
+                                                <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+                                            </div>
+                                            <div class="form-group checkbox-container">
+                                                <input type="checkbox" id="deliveryInstructions" name="deliveryInstructions">
+                                                <label for="deliveryInstructions">Add delivery instructions</label>
+                                            </div>
+                                            <div class="form-group" id="instructionsGroup" style="display: none;">
+                                                <label for="instructions">Delivery Instructions</label>
+                                                <textarea id="instructions" name="instructions" rows="2"></textarea>
+                                            </div>
+                                            <div class="order-summary">
+                                                <h4>Order Summary</h4>
+                                                <div class="summary-item">
+                                                    <span>Product:</span>
+                                                    <span id="summaryProduct">Product Name</span>
+                                                </div>
+                                                <div class="summary-item">
+                                                    <span>Quantity:</span>
+                                                    <span id="summaryQuantity">1 kg</span>
+                                                </div>
+                                                <div class="summary-item">
+                                                    <span>Price per Unit:</span>
+                                                    <span id="summaryUnitPrice">₹100</span>
+                                                </div>
+                                                <div class="summary-item total">
+                                                    <span>Total:</span>
+                                                    <span id="summaryTotal">₹100</span>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Place Order</button>
+                                            <button type="button" class="btn btn-secondary" id="addToCartBtn">Add to Cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="cartModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Shopping Cart</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="cart-content">
+                                <div class="cart-items" id="cartItems">
+                                </div>
+                                <div class="cart-summary">
+                                    <div class="summary-item total">
+                                        <span>Total:</span>
+                                        <span id="cartTotal">₹0</span>
+                                    </div>
+                                    <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="orders" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>My Orders</h2>
+                        <div class="filter-container">
+                            <select id="orderStatusFilter">
+                                <option value="all">All Orders</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="packed">Packed</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="orders-container" id="ordersContainer">
+                    </div>
+                    <div class="modal" id="feedbackModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Leave Feedback</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <form id="feedbackForm">
+                                <input type="hidden" id="feedbackOrderId" name="feedbackOrderId">
+                                <div class="form-group">
+                                    <label>Rate your experience</label>
+                                    <div class="star-rating">
+                                        <input type="radio" id="star5" name="rating" value="5">
+                                        <label for="star5"></label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4"></label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3"></label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2"></label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="feedbackComment">Comment</label>
+                                    <textarea id="feedbackComment" name="feedbackComment" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section id="messages" class="dashboard-page">
+                    <div class="messages-container">
+                        <div class="contacts-panel">
+                            <div class="contacts-header">
+                                <h3>Conversations</h3>
+                                <div class="search-contacts">
+                                    <input type="text" placeholder="Search contacts..." id="searchContacts">
+                                </div>
+                            </div>
+                            <div class="contacts-list" id="contactsList">
+                            </div>
+                        </div>
+                        <div class="chat-panel">
+                            <div class="chat-header" id="chatHeader">
+                                <div class="chat-info">
+                                    <h3 id="chatRecipientName">Select a contact</h3>
+                                    <p id="chatRecipientStatus"></p>
+                                </div>
+                            </div>
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="empty-chat-message">Select a conversation to start messaging</div>
+                            </div>
+                            <div class="chat-input">
+                                <textarea id="messageInput" placeholder="Type a message..." disabled></textarea>
+                                <button id="sendMessageBtn" class="btn btn-primary" disabled>Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="favorites" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>My Favorites</h2>
+                    </div>
+                    <div class="favorites-container" id="favoritesContainer">
+                    </div>
+                </section>
+                <section id="account" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Account Settings</h2>
+                    </div>
+
+                    <div class="account-settings">
+                        <div class="account-section profile-section">
+                            <h3>Profile Information</h3>
+                            <form id="profileForm">
+                                <div class="profile-picture">
+                                    <div class="avatar-placeholder large">
+                                        <span id="profileInitials">BU</span>
+                                    </div>
+                                    <div class="profile-picture-upload">
+                                        <button type="button" class="btn btn-secondary" id="changeProfilePicBtn">Change Picture</button>
+                                        <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileName">Full Name</label>
+                                    <input type="text" id="profileName" name="profileName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Phone Number</label>
+                                    <input type="tel" id="profilePhone" name="profilePhone" required pattern="[0-9]{10}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" name="profileEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userType">User Type</label>
+                                    <select id="userType" name="userType" required>
+                                        <option value="">Select User Type</option>
+                                        <option value="Wholesaler">Wholesaler</option>
+                                        <option value="Retailer">Retailer</option>
+                                        <option value="Consumer">Consumer</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessName">Business Name (if applicable)</label>
+                                    <input type="text" id="businessName" name="businessName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileAddress">Address</label>
+                                    <textarea id="profileAddress" name="profileAddress" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div class="account-section security-section">
+                            <h3>Security</h3>
+                            <form id="passwordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword" required minlength="8">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required minlength="8">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/view/js/storage.js"></script>
+    <script type="module" src="/view/js/main.js"></script>
+    <script type="module" src="/view/js/buyer.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Buyer - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="css/buyer.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Kishan Mitra</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="register">
+            <div class="container">
+                <h2 class="section-title">Register as Buyer</h2>
+                <div class="register-content">
+                    <div class="register-image buyer-register-image"></div>
+                    <form id="buyerRegistrationForm" class="register-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="userType">User Type</label>
+                            <select id="userType" name="userType" required>
+                                <option value="">Select User Type</option>
+                                <option value="Wholesaler">Wholesaler</option>
+                                <option value="Retailer">Retailer</option>
+                                <option value="Consumer">Consumer</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="businessName">Business Name (if applicable)</label>
+                            <input type="text" id="businessName" name="businessName">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" required></textarea>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required minlength="8">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group checkbox-container">
+                            <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                            <label for="termsAgreement">I agree to the <a href="#" class="terms-link">Terms and Conditions</a></label>
+                            <span class="error-message"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <p class="login-redirect">Already have an account? <a href="login.html">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Kishan Mitra</h2>
+                    <p>Happy Family, Strong India</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Join Us</h3>
+                    <ul>
+                        <li><a href="register-farmer.html">Register as Farmer</a></li>
+                        <li><a href="register-buyer.html" class="active">Register as Buyer</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kishan Mitra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script  type="module" type="module" src="/view/js/storage.js"></script>
+    <script  type="module" type="module" src="/view/js/main.js"></script>
+    <script  type="module" type="module" src="/view/js/auth.js"></script>
+</body>
+</html>

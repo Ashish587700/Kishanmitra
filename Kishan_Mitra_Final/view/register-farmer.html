@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Farmer - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="css/farmer.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Kishan Mitra</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="register">
+            <div class="container">
+                <h2 class="section-title">Register as Farmer</h2>
+                <div class="register-content">
+                    <div class="register-image farmer-register-image"></div>
+                    <form id="farmerRegistrationForm" class="register-form">
+                        <div class="form-progress">
+                            <div class="progress-step active" data-step="1">Personal Details</div>
+                            <div class="progress-step" data-step="2">Farm Details</div>
+                            <div class="progress-step" data-step="3">Verification</div>
+                        </div>
+                       
+                        <div class="form-step active" data-step="1">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required minlength="8">
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-primary next-step" data-next="2">Next</button>
+                            </div>
+                        </div>
+                        <div class="form-step" data-step="2">
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <input type="text" id="district" name="district" required>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                </select>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="farmSize">Farm Size (in acres)</label>
+                                <input type="number" id="farmSize" name="farmSize" min="0.1" step="0.1" required>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Crops Grown</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="rice" name="crops" value="Rice">
+                                        <label for="rice">Rice</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="wheat" name="crops" value="Wheat">
+                                        <label for="wheat">Wheat</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="corn" name="crops" value="Corn">
+                                        <label for="corn">Corn</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sugarcane" name="crops" value="Sugarcane">
+                                        <label for="sugarcane">Sugarcane</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="vegetables" name="crops" value="Vegetables">
+                                        <label for="vegetables">Vegetables</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="fruits" name="crops" value="Fruits">
+                                        <label for="fruits">Fruits</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="pulses" name="crops" value="Pulses">
+                                        <label for="pulses">Pulses</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="other" name="crops" value="Other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary prev-step" data-prev="1">Previous</button>
+                                <button type="button" class="btn btn-primary next-step" data-next="3">Next</button>
+                            </div>
+                        </div>
+                        <div class="form-step" data-step="3">
+                            <div class="form-group">
+                                <label for="aadhaar">Aadhaar Number</label>
+                                <input type="text" id="aadhaar" name="aadhaar" required pattern="[0-9]{12}">
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group" id="otpGroup" style="display: none;">
+                                <label for="otp">Enter OTP sent to your phone</label>
+                                <div class="otp-inputs">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                                </div>
+                                <input type="hidden" id="otp" name="otp">
+                                <span class="error-message"></span>
+                            </div>
+                            <button type="button" id="sendOtpBtn" class="btn btn-secondary">Send OTP</button>
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary prev-step" data-prev="2">Previous</button>
+                                <button type="submit" class="btn btn-primary" id="registerBtn" disabled>Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Kishan Mitra</h2>
+                    <p>Happy Family, Strong India</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Join Us</h3>
+                    <ul>
+                        <li><a href="register-farmer.html" class="active">Register as Farmer</a></li>
+                        <li><a href="register-buyer.html">Register as Buyer</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kishan Mitra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script  type="module" type="module" src="/view/js/storage.js"></script>
+    <script  type="module" type="module" src="/view/js/main.js"></script>
+    <script  type="module" type="module" src="/view/js/auth.js"></script>
+</body>
+</html>

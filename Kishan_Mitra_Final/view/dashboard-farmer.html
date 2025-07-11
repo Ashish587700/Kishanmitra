@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="css/farmer.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Kishan Mitra</h2>
+                <div class="close-sidebar" id="closeSidebar">×</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <div class="avatar-placeholder">
+                        <span id="userInitials">FM</span>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">Farmer Name</h3>
+                    <p id="userLocation">Location</p>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="overview">Overview</a></li>
+                    <li><a href="#" class="nav-link" data-page="manage-crops">Manage Crops</a></li>
+                    <li><a href="#" class="nav-link" data-page="manage-products">Processed Goods</a></li>
+                    <li><a href="#" class="nav-link" data-page="orders">Orders</a></li>
+                    <li><a href="#" class="nav-link" data-page="messages">Messages</a></li>
+                    <li><a href="#" class="nav-link" data-page="account">Account</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline">Logout</button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 id="pageTitle">Farmer Dashboard</h1>
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <span class="notification-count">3</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <span id="headerUserName">Farmer</span>
+                        <div class="dropdown-content">
+                            <a href="#" data-page="account">My Account</a>
+                            <a href="#" id="headerLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section id="overview" class="dashboard-page active">
+                    <div class="overview-cards">
+                        <div class="overview-card">
+                            <h3>Total Crops</h3>
+                            <p class="stat" id="totalCrops">0</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Active Orders</h3>
+                            <p class="stat" id="activeOrders">0</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Total Revenue</h3>
+                            <p class="stat" id="totalRevenue">₹0</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Unread Messages</h3>
+                            <p class="stat" id="unreadMessages">0</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-sections">
+                        <div class="dashboard-section">
+                            <div class="section-header">
+                                <h3>Recent Orders</h3>
+                                <a href="#" class="view-all" data-page="orders">View All</a>
+                            </div>
+                            <div class="table-container">
+                                <table class="data-table" id="recentOrdersTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Buyer</th>
+                                            <th>Items</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <div class="section-header">
+                                <h3>Crop Inventory</h3>
+                                <a href="#" class="view-all" data-page="manage-crops">Manage</a>
+                            </div>
+                            <div class="table-container">
+                                <table class="data-table" id="cropInventoryTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Crop</th>
+                                            <th>Quantity</th>
+                                            <th>Price/Kg</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="manage-crops" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Manage Crops</h2>
+                        <button class="btn btn-primary" id="addCropBtn">Add New Crop</button>
+                    </div>
+
+                    <div class="crop-list" id="cropList">
+                        
+                    </div>
+
+                    <div class="modal" id="cropModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="cropModalTitle">Add New Crop</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <form id="cropForm">
+                                <input type="hidden" id="cropId" name="cropId">
+                                <div class="form-group">
+                                    <label for="cropName">Crop Name</label>
+                                    <input type="text" id="cropName" name="cropName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cropQuantity">Quantity (in kg)</label>
+                                    <input type="number" id="cropQuantity" name="cropQuantity" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cropPrice">Price (per kg)</label>
+                                    <div class="price-input">
+                                        <span class="currency">₹</span>
+                                        <input type="number" id="cropPrice" name="cropPrice" min="1" step="0.01" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cropCondition">Condition</label>
+                                    <select id="cropCondition" name="cropCondition" required>
+                                        <option value="">Select Condition</option>
+                                        <option value="Fresh">Fresh</option>
+                                        <option value="Organic">Organic</option>
+                                        <option value="Premium">Premium</option>
+                                        <option value="Standard">Standard</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cropImage">Image</label>
+                                    <input type="file" id="cropImage" name="cropImage" accept="image/*">
+                                    <div id="previewContainer" class="preview-container"></div>
+                                </div>
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="cropAvailable" name="cropAvailable" checked>
+                                    <label for="cropAvailable">Available for Sale</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cropDescription">Description</label>
+                                    <textarea id="cropDescription" name="cropDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="btn btn-secondary" id="cancelCropBtn">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section id="manage-products" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Processed Goods</h2>
+                        <button class="btn btn-primary" id="addProductBtn">Add New Product</button>
+                    </div>
+
+                    <div class="product-list" id="productList">
+                    </div>
+                    <div class="modal" id="productModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="productModalTitle">Add New Product</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <form id="productForm">
+                                <input type="hidden" id="productId" name="productId">
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" id="productName" name="productName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productDescription">Description</label>
+                                    <textarea id="productDescription" name="productDescription" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productQuantity">Quantity</label>
+                                    <input type="number" id="productQuantity" name="productQuantity" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPrice">Price (per unit)</label>
+                                    <div class="price-input">
+                                        <span class="currency">₹</span>
+                                        <input type="number" id="productPrice" name="productPrice" min="1" step="0.01" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPackaging">Packaging Details</label>
+                                    <input type="text" id="productPackaging" name="productPackaging" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productShelfLife">Shelf Life (in days)</label>
+                                    <input type="number" id="productShelfLife" name="productShelfLife" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Quality Tags</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="tagOrganic" name="qualityTags" value="Organic">
+                                            <label for="tagOrganic">Organic</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="tagGlutenFree" name="qualityTags" value="Gluten-Free">
+                                            <label for="tagGlutenFree">Gluten-Free</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="tagVegan" name="qualityTags" value="Vegan">
+                                            <label for="tagVegan">Vegan</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="tagNatural" name="qualityTags" value="Natural">
+                                            <label for="tagNatural">Natural</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="tagPreservativeFree" name="qualityTags" value="Preservative-Free">
+                                            <label for="tagPreservativeFree">Preservative-Free</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productImage">Image</label>
+                                    <input type="file" id="productImage" name="productImage" accept="image/*">
+                                    <div id="productPreviewContainer" class="preview-container"></div>
+                                </div>
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="productAvailable" name="productAvailable" checked>
+                                    <label for="productAvailable">Available for Sale</label>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="btn btn-secondary" id="cancelProductBtn">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section id="orders" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Manage Orders</h2>
+                        <div class="filter-container">
+                            <select id="orderStatusFilter">
+                                <option value="all">All Orders</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="packed">Packed</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Buyer</th>
+                                    <th>Items</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="orderDetailsModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Order Details</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="order-details-content">
+                                <div class="order-info">
+                                    <div class="order-info-group">
+                                        <h4>Order Information</h4>
+                                        <p><strong>Order ID:</strong> <span id="orderDetailId"></span></p>
+                                        <p><strong>Date:</strong> <span id="orderDetailDate"></span></p>
+                                        <p><strong>Status:</strong> <span id="orderDetailStatus"></span></p>
+                                    </div>
+                                    <div class="order-info-group">
+                                        <h4>Buyer Information</h4>
+                                        <p><strong>Name:</strong> <span id="orderDetailBuyer"></span></p>
+                                        <p><strong>Phone:</strong> <span id="orderDetailPhone"></span></p>
+                                        <p><strong>Email:</strong> <span id="orderDetailEmail"></span></p>
+                                    </div>
+                                </div>
+                                <div class="order-items">
+                                    <h4>Order Items</h4>
+                                    <ul id="orderDetailItems">
+                                    </ul>
+                                </div>
+                                <div class="order-delivery">
+                                    <h4>Delivery Information</h4>
+                                    <p><strong>Address:</strong></p>
+                                    <p id="orderDetailAddress"></p>
+                                </div>
+                                <div class="order-update">
+                                    <h4>Update Order Status</h4>
+                                    <div class="status-update">
+                                        <select id="updateOrderStatus">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="packed">Packed</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                        <button id="updateStatusBtn" class="btn btn-primary">Update Status</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="messages" class="dashboard-page">
+                    <div class="messages-container">
+                        <div class="contacts-panel">
+                            <div class="contacts-header">
+                                <h3>Conversations</h3>
+                                <div class="search-contacts">
+                                    <input type="text" placeholder="Search contacts..." id="searchContacts">
+                                </div>
+                            </div>
+                            <div class="contacts-list" id="contactsList">
+                            </div>
+                        </div>
+                        <div class="chat-panel">
+                            <div class="chat-header" id="chatHeader">
+                                <div class="chat-info">
+                                    <h3 id="chatRecipientName">Select a contact</h3>
+                                    <p id="chatRecipientStatus"></p>
+                                </div>
+                            </div>
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="empty-chat-message">Select a conversation to start messaging</div>
+                            </div>
+                            <div class="chat-input">
+                                <textarea id="messageInput" placeholder="Type a message..." disabled></textarea>
+                                <button id="sendMessageBtn" class="btn btn-primary" disabled>Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="account" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Account Settings</h2>
+                    </div>
+
+                    <div class="account-settings">
+                        <div class="account-section profile-section">
+                            <h3>Profile Information</h3>
+                            <form id="profileForm">
+                                <div class="profile-picture">
+                                    <div class="avatar-placeholder large">
+                                        <span id="profileInitials">FM</span>
+                                    </div>
+                                    <div class="profile-picture-upload">
+                                        <button type="button" class="btn btn-secondary" id="changeProfilePicBtn">Change Picture</button>
+                                        <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileName">Full Name</label>
+                                    <input type="text" id="profileName" name="profileName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Phone Number</label>
+                                    <input type="tel" id="profilePhone" name="profilePhone" required pattern="[0-9]{10}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" name="profileEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileDistrict">District</label>
+                                    <input type="text" id="profileDistrict" name="profileDistrict" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileState">State</label>
+                                    <select id="profileState" name="profileState" required>
+                                        <option value="">Select State</option>
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div class="account-section farm-section">
+                            <h3>Farm Details</h3>
+                            <form id="farmForm">
+                                <div class="form-group">
+                                    <label for="farmSize">Farm Size (in acres)</label>
+                                    <input type="number" id="farmSize" name="farmSize" min="0.1" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Crops Grown</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmRice" name="farmCrops" value="Rice">
+                                            <label for="farmRice">Rice</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmWheat" name="farmCrops" value="Wheat">
+                                            <label for="farmWheat">Wheat</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmCorn" name="farmCrops" value="Corn">
+                                            <label for="farmCorn">Corn</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmSugarcane" name="farmCrops" value="Sugarcane">
+                                            <label for="farmSugarcane">Sugarcane</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmVegetables" name="farmCrops" value="Vegetables">
+                                            <label for="farmVegetables">Vegetables</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmFruits" name="farmCrops" value="Fruits">
+                                            <label for="farmFruits">Fruits</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmPulses" name="farmCrops" value="Pulses">
+                                            <label for="farmPulses">Pulses</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="farmOther" name="farmCrops" value="Other">
+                                            <label for="farmOther">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div class="account-section security-section">
+                            <h3>Security</h3>
+                            <form id="passwordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword" required minlength="8">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required minlength="8">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/view/js/storage.js"></script>
+    <script type="module" src="/view/js/main.js"></script>
+    <script  type="module"  type="module" src="/view/js/farmer.js"></script>
+    
+</body>
+</html>

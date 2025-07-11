@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="css/admin.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body class="dashboard-body admin-body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Kishan Mitra</h2>
+                <div class="close-sidebar" id="closeSidebar">×</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <div class="avatar-placeholder admin-avatar">
+                        <span id="userInitials">AD</span>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">Admin</h3>
+                    <p id="userRole">Administrator</p>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="overview">Overview</a></li>
+                    <li><a href="#" class="nav-link" data-page="farmers">Farmers</a></li>
+                    <li><a href="#" class="nav-link" data-page="buyers">Buyers</a></li>
+                    <li><a href="#" class="nav-link" data-page="transactions">Transactions</a></li>
+                    <li><a href="#" class="nav-link" data-page="reports">Reports</a></li>
+                    <li><a href="#" class="nav-link" data-page="settings">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-outline">Logout</button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 id="pageTitle">Admin Dashboard</h1>
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <span class="notification-count">5</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <span id="headerUserName">Admin</span>
+                        <div class="dropdown-content">
+                            <a href="#" data-page="settings">Settings</a>
+                            <a href="#" id="headerLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section id="overview" class="dashboard-page active">
+                    <div class="overview-cards">
+                        <div class="overview-card">
+                            <h3>Total Users</h3>
+                            <p class="stat" id="totalUsers">0</p>
+                            <div class="stat-breakdown">
+                                <span id="totalFarmers">0</span> Farmers, <span id="totalBuyers">0</span> Buyers
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Pending Verifications</h3>
+                            <p class="stat" id="pendingVerifications">0</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Total Transactions</h3>
+                            <p class="stat" id="totalTransactions">0</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Total Revenue</h3>
+                            <p class="stat" id="totalRevenue">₹0</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-sections">
+                        <div class="dashboard-section">
+                            <div class="section-header">
+                                <h3>Platform Statistics</h3>
+                            </div>
+                            <div class="stats-container">
+                                <div class="stat-box">
+                                    <h4>Most Sold Crop</h4>
+                                    <p id="mostSoldCrop">Rice</p>
+                                    <span class="stat-count">1200 kg</span>
+                                </div>
+                                <div class="stat-box">
+                                    <h4>Top Selling Region</h4>
+                                    <p id="topRegion">Punjab</p>
+                                    <span class="stat-count">₹120,000</span>
+                                </div>
+                                <div class="stat-box">
+                                    <h4>Top Farmer</h4>
+                                    <p id="topFarmer">Ramesh Patel</p>
+                                    <span class="stat-count">45 orders</span>
+                                </div>
+                                <div class="stat-box">
+                                    <h4>Top Buyer</h4>
+                                    <p id="topBuyer">Rohit Sharma</p>
+                                    <span class="stat-count">32 orders</span>
+                                </div>
+                                <div class="stat-box">
+                                    <h4>Average Order Value</h4>
+                                    <p id="avgOrderValue">₹2,850</p>
+                                </div>
+                                <div class="stat-box">
+                                    <h4>Active Products</h4>
+                                    <p id="activeProducts">245</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <div class="section-header">
+                                <h3>Recent Transactions</h3>
+                                <a href="#" class="view-all" data-page="transactions">View All</a>
+                            </div>
+                            <div class="table-container">
+                                <table class="data-table" id="recentTransactionsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Transaction ID</th>
+                                            <th>Date</th>
+                                            <th>Farmer</th>
+                                            <th>Buyer</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <div class="section-header">
+                                <h3>Pending Verifications</h3>
+                                <a href="#" class="view-all" data-page="farmers">View All</a>
+                            </div>
+                            <div class="verification-cards" id="pendingVerificationsList">
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="farmers" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Manage Farmers</h2>
+                        <div class="filter-container">
+                            <select id="farmerStatusFilter">
+                                <option value="all">All Farmers</option>
+                                <option value="pending">Pending Verification</option>
+                                <option value="verified">Verified</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <input type="text" id="searchFarmers" placeholder="Search farmers...">
+                            <button id="searchFarmersBtn" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="farmersTable">
+                            <thead>
+                                <tr>
+                                    <th>Farmer ID</th>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Phone</th>
+                                    <th>Farm Size</th>
+                                    <th>Crops</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="farmerDetailsModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Farmer Details</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="farmer-details-content">
+                                <div class="user-profile-header">
+                                    <div class="avatar-placeholder large">
+                                        <span id="farmerDetailInitials">FN</span>
+                                    </div>
+                                    <div class="user-profile-info">
+                                        <h3 id="farmerDetailName">Farmer Name</h3>
+                                        <p id="farmerDetailLocation">Location</p>
+                                        <p id="farmerDetailStatus" class="status-badge pending">Pending Verification</p>
+                                    </div>
+                                </div>
+
+                                <div class="user-profile-sections">
+                                    <div class="profile-section">
+                                        <h4>Contact Information</h4>
+                                        <p><strong>Phone:</strong> <span id="farmerDetailPhone">1234567890</span></p>
+                                        <p><strong>Email:</strong> <span id="farmerDetailEmail">farmer@example.com</span></p>
+                                    </div>
+                                    <div class="profile-section">
+                                        <h4>Farm Details</h4>
+                                        <p><strong>Farm Size:</strong> <span id="farmerDetailFarmSize">5 acres</span></p>
+                                        <p><strong>Crops Grown:</strong> <span id="farmerDetailCrops">Rice, Wheat, Vegetables</span></p>
+                                    </div>
+                                    <div class="profile-section">
+                                        <h4>Verification</h4>
+                                        <p><strong>Aadhaar Number:</strong> <span id="farmerDetailAadhaar">XXXX-XXXX-XXXX</span></p>
+                                        <p><strong>Registration Date:</strong> <span id="farmerDetailRegDate">01 Jan 2025</span></p>
+                                    </div>
+                                    <div class="profile-section">
+                                        <h4>Activity</h4>
+                                        <p><strong>Active Listings:</strong> <span id="farmerDetailListings">5</span></p>
+                                        <p><strong>Completed Transactions:</strong> <span id="farmerDetailTransactions">10</span></p>
+                                        <p><strong>Total Revenue:</strong> <span id="farmerDetailRevenue">₹20,000</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="verification-actions" id="verificationActions">
+                                    <button class="btn btn-primary" id="verifyFarmerBtn">Verify Farmer</button>
+                                    <button class="btn btn-danger" id="rejectFarmerBtn">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="buyers" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Manage Buyers</h2>
+                        <div class="filter-container">
+                            <select id="buyerTypeFilter">
+                                <option value="all">All Buyers</option>
+                                <option value="Wholesaler">Wholesalers</option>
+                                <option value="Retailer">Retailers</option>
+                                <option value="Consumer">Consumers</option>
+                            </select>
+                            <input type="text" id="searchBuyers" placeholder="Search buyers...">
+                            <button id="searchBuyersBtn" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="buyersTable">
+                            <thead>
+                                <tr>
+                                    <th>Buyer ID</th>
+                                    <th>Name</th>
+                                    <th>User Type</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Total Orders</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="buyerDetailsModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Buyer Details</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="buyer-details-content">
+                                <div class="user-profile-header">
+                                    <div class="avatar-placeholder large">
+                                        <span id="buyerDetailInitials">BN</span>
+                                    </div>
+                                    <div class="user-profile-info">
+                                        <h3 id="buyerDetailName">Buyer Name</h3>
+                                        <p id="buyerDetailType">Wholesaler</p>
+                                        <p id="buyerDetailStatus" class="status-badge active">Active</p>
+                                    </div>
+                                </div>
+
+                                <div class="user-profile-sections">
+                                    <div class="profile-section">
+                                        <h4>Contact Information</h4>
+                                        <p><strong>Phone:</strong> <span id="buyerDetailPhone">1234567890</span></p>
+                                        <p><strong>Email:</strong> <span id="buyerDetailEmail">buyer@example.com</span></p>
+                                        <p><strong>Address:</strong> <span id="buyerDetailAddress">123, Street Name, City, State</span></p>
+                                    </div>
+                                    <div class="profile-section">
+                                        <h4>Business Information</h4>
+                                        <p><strong>Business Name:</strong> <span id="buyerDetailBusiness">Business Name</span></p>
+                                        <p><strong>Registration Date:</strong> <span id="buyerDetailRegDate">01 Jan 2025</span></p>
+                                    </div>
+                                    <div class="profile-section">
+                                        <h4>Activity</h4>
+                                        <p><strong>Total Orders:</strong> <span id="buyerDetailOrders">15</span></p>
+                                        <p><strong>Active Orders:</strong> <span id="buyerDetailActiveOrders">3</span></p>
+                                        <p><strong>Total Spent:</strong> <span id="buyerDetailSpent">₹25,000</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="buyer-actions">
+                                    <button class="btn btn-secondary" id="viewBuyerOrdersBtn">View Orders</button>
+                                    <button class="btn btn-danger" id="blockBuyerBtn">Block Buyer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="transactions" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Transactions</h2>
+                        <div class="filter-container">
+                            <select id="transactionStatusFilter">
+                                <option value="all">All Transactions</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <input type="date" id="transactionDateFilter" placeholder="Filter by date">
+                            <input type="text" id="searchTransactions" placeholder="Search transactions...">
+                            <button id="searchTransactionsBtn" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="transactionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>Date</th>
+                                    <th>Farmer</th>
+                                    <th>Buyer</th>
+                                    <th>Items</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal" id="transactionDetailsModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Transaction Details</h3>
+                                <span class="close-modal">&times;</span>
+                            </div>
+                            <div class="transaction-details-content">
+                                <div class="transaction-header">
+                                    <h4>Transaction #<span id="transDetailId">1234</span></h4>
+                                    <p class="transaction-date">Date: <span id="transDetailDate">01 Jan 2025</span></p>
+                                    <p class="status-badge" id="transDetailStatus">Processing</p>
+                                </div>
+                                
+                                <div class="transaction-parties">
+                                    <div class="party-box">
+                                        <h4>Farmer</h4>
+                                        <p><strong>Name:</strong> <span id="transDetailFarmer">Farmer Name</span></p>
+                                        <p><strong>Phone:</strong> <span id="transDetailFarmerPhone">1234567890</span></p>
+                                        <button class="btn btn-outline-sm" id="viewFarmerBtn">View Profile</button>
+                                    </div>
+                                    <div class="party-box">
+                                        <h4>Buyer</h4>
+                                        <p><strong>Name:</strong> <span id="transDetailBuyer">Buyer Name</span></p>
+                                        <p><strong>Phone:</strong> <span id="transDetailBuyerPhone">1234567890</span></p>
+                                        <button class="btn btn-outline-sm" id="viewBuyerBtn">View Profile</button>
+                                    </div>
+                                </div>
+
+                                <div class="transaction-items">
+                                    <h4>Items</h4>
+                                    <table class="transaction-items-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="transDetailItems">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3"><strong>Total</strong></td>
+                                                <td id="transDetailTotal">₹2,500</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="transaction-delivery">
+                                    <h4>Delivery Information</h4>
+                                    <p><strong>Address:</strong></p>
+                                    <p id="transDetailAddress">123, Street Name, City, State, PIN Code</p>
+                                </div>
+
+                                <div class="transaction-status-update">
+                                    <h4>Update Status</h4>
+                                    <div class="status-update">
+                                        <select id="updateTransactionStatus">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="packed">Packed</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="flagged">Flagged</option>
+                                        </select>
+                                        <button id="updateTransStatusBtn" class="btn btn-primary">Update Status</button>
+                                    </div>
+                                </div>
+
+                                <div class="admin-notes">
+                                    <h4>Admin Notes</h4>
+                                    <textarea id="adminNotes" rows="3" placeholder="Add notes about this transaction"></textarea>
+                                    <button id="saveNotesBtn" class="btn btn-secondary">Save Notes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="reports" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Reports</h2>
+                        <div class="date-range-filter">
+                            <input type="date" id="startDate" placeholder="Start Date">
+                            <span>to</span>
+                            <input type="date" id="endDate" placeholder="End Date">
+                            <button id="generateReportBtn" class="btn btn-primary">Generate Report</button>
+                        </div>
+                    </div>
+
+                    <div class="reports-container">
+                        <div class="report-menu">
+                            <button class="report-tab active" data-report="sales">Sales Overview</button>
+                        </div>
+
+                        <div class="report-content">
+                            <div id="salesReport" class="report-tab-content active">
+                                <div class="report-header">
+                                    <h3>Sales Overview</h3>
+                                    <div class="report-actions">
+                                        <button class="btn btn-outline-sm" id="exportSalesBtn">Export</button>
+                                        <button class="btn btn-outline-sm" id="printSalesBtn">Print</button>
+                                    </div>
+                                </div>
+                                <div class="report-summary">
+                                    <div class="report-stat-box">
+                                        <h4>Total Sales</h4>
+                                        <p class="report-stat">₹<span id="totalSales">150,000</span></p>
+                                    </div>
+                                    <div class="report-stat-box">
+                                        <h4>Total Orders</h4>
+                                        <p class="report-stat"><span id="totalOrders">120</span></p>
+                                    </div>
+                                    <div class="report-stat-box">
+                                        <h4>Average Order Value</h4>
+                                        <p class="report-stat">₹<span id="avgOrder">1,250</span></p>
+                                    </div>
+                                    <div class="report-stat-box">
+                                        <h4>Completion Rate</h4>
+                                        <p class="report-stat"><span id="completionRate">92</span>%</p>
+                                    </div>
+                                </div>
+                                <div class="report-chart-container">
+                                    <div class="report-chart" id="salesChart">
+                                        <div class="placeholder-chart">
+                                            <div class="chart-bars">
+                                                <div class="chart-bar" style="height: 60%;"></div>
+                                                <div class="chart-bar" style="height: 80%;"></div>
+                                                <div class="chart-bar" style="height: 40%;"></div>
+                                                <div class="chart-bar" style="height: 70%;"></div>
+                                                <div class="chart-bar" style="height: 90%;"></div>
+                                                <div class="chart-bar" style="height: 50%;"></div>
+                                                <div class="chart-bar" style="height: 75%;"></div>
+                                            </div>
+                                            <div class="chart-labels">
+                                                <span>Mon</span>
+                                                <span>Tue</span>
+                                                <span>Wed</span>
+                                                <span>Thu</span>
+                                                <span>Fri</span>
+                                                <span>Sat</span>
+                                                <span>Sun</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="productsReport" class="report-tab-content">
+                                <div class="report-header">
+                                    <h3>Product Analysis</h3>
+                                    <div class="report-actions">
+                                        <button class="btn btn-outline-sm" id="exportProductsBtn">Export</button>
+                                        <button class="btn btn-outline-sm" id="printProductsBtn">Print</button>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="topProductsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Category</th>
+                                                <th>Quantity Sold</th>
+                                                <th>Total Revenue</th>
+                                                <th>Average Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="usersReport" class="report-tab-content">
+                                <div class="report-header">
+                                    <h3>User Activity</h3>
+                                    <div class="report-actions">
+                                        <button class="btn btn-outline-sm" id="exportUsersBtn">Export</button>
+                                        <button class="btn btn-outline-sm" id="printUsersBtn">Print</button>
+                                    </div>
+                                </div>
+                                <div class="report-user-stats">
+                                    <div class="user-stats-section">
+                                        <h4>Top Farmers</h4>
+                                        <table class="data-table" id="topFarmersTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Location</th>
+                                                    <th>Orders</th>
+                                                    <th>Revenue</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="user-stats-section">
+                                        <h4>Top Buyers</h4>
+                                        <table class="data-table" id="topBuyersTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Type</th>
+                                                    <th>Orders</th>
+                                                    <th>Amount Spent</th>
+                                                </tr>
+                                            </thead>
+                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="regionsReport" class="report-tab-content">
+                                <div class="report-header">
+                                    <h3>Regional Analysis</h3>
+                                    <div class="report-actions">
+                                        <button class="btn btn-outline-sm" id="exportRegionsBtn">Export</button>
+                                        <button class="btn btn-outline-sm" id="printRegionsBtn">Print</button>
+                                    </div>
+                                </div>
+                                <div class="region-stats">
+                                    <div class="region-map">
+                                        <div class="placeholder-map">
+                                            <p>India Map Visualization</p>
+                                            <p>State-wise distribution of farmers and sales</p>
+                                        </div>
+                                    </div>
+                                    <div class="region-data">
+                                        <table class="data-table" id="regionDataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>State</th>
+                                                    <th>Farmers</th>
+                                                    <th>Buyers</th>
+                                                    <th>Orders</th>
+                                                    <th>Revenue</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                             
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="settings" class="dashboard-page">
+                    <div class="section-header">
+                        <h2>Admin Settings</h2>
+                    </div>
+
+                    <div class="settings-container">
+                        <div class="settings-section">
+                            <h3>Profile Settings</h3>
+                            <form id="adminProfileForm">
+                                <div class="form-group">
+                                    <label for="adminName">Admin Name</label>
+                                    <input type="text" id="adminName" name="adminName" value="Administrator" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminEmail">Email</label>
+                                    <input type="email" id="adminEmail" name="adminEmail" value="admin@kishanmitra.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminPhone">Phone</label>
+                                    <input type="tel" id="adminPhone" name="adminPhone" value="1234567890" required pattern="[0-9]{10}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Security</h3>
+                            <form id="adminPasswordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword" required minlength="8">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required minlength="8">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </form>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Notification Settings</h3>
+                            <form id="notificationSettingsForm">
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="newUserNotif" name="newUserNotif" checked>
+                                    <label for="newUserNotif">New User Registrations</label>
+                                </div>
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="orderNotif" name="orderNotif" checked>
+                                    <label for="orderNotif">New Orders</label>
+                                </div>
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="issueNotif" name="issueNotif" checked>
+                                    <label for="issueNotif">Issue Reports</label>
+                                </div>
+                                <div class="form-group checkbox-container">
+                                    <input type="checkbox" id="paymentNotif" name="paymentNotif" checked>
+                                    <label for="paymentNotif">Payment Notifications</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Preferences</button>
+                            </form>
+                        </div>
+
+                        <div class="settings-section danger-zone">
+                            <h3>Admin Controls</h3>
+                            <div class="admin-actions">
+                                <div class="admin-action">
+                                    <div class="action-description">
+                                        <h4>Database Backup</h4>
+                                        <p>Create a backup of all platform data.</p>
+                                    </div>
+                                    <button class="btn btn-secondary" id="backupBtn">Create Backup</button>
+                                </div>
+                                <div class="admin-action">
+                                    <div class="action-description">
+                                        <h4>System Maintenance</h4>
+                                        <p>Temporarily disable the platform for maintenance.</p>
+                                    </div>
+                                    <button class="btn btn-secondary" id="maintenanceBtn">Enable Maintenance Mode</button>
+                                </div>
+                                <div class="admin-action">
+                                    <div class="action-description">
+                                        <h4>Clear Cache</h4>
+                                        <p>Clear the system cache to resolve potential issues.</p>
+                                    </div>
+                                    <button class="btn btn-secondary" id="clearCacheBtn">Clear Cache</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/view/js/storage.js"></script>
+    <script type="module" src="/view/js/main.js"></script>
+    <script type="module" src="/view/js/admin.js"></script>
+</body>
+</html>

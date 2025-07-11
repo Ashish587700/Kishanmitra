@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Kishan Mitra</title>
+    <link rel="stylesheet"  href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Kishan Mitra</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="login.html" class="btn-login active">Login</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login">
+            <div class="container">
+                <h2 class="section-title">Login to Your Account</h2>
+                <div class="login-content">
+                    <div class="login-image"></div>
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="userType">User Type</label>
+                            <select id="userType" name="userType" required>
+                                <option value="">Select User Type</option>
+                                <option value="farmer">Farmer</option>
+                                <option value="buyer">Buyer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email or Phone</label>
+                            <input type="text" id="email" name="email" required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group checkbox-container">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div class="login-options">
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                            <div class="register-links">
+                                <p>Don't have an account?</p>
+                                <div class="register-buttons">
+                                    <a href="register-farmer.html" class="btn btn-outline-sm">Register as Farmer</a>
+                                    <a href="register-buyer.html" class="btn btn-outline-sm">Register as Buyer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Kishan Mitra</h2>
+                    <p>Happy Family, Strong India</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Join Us</h3>
+                    <ul>
+                        <li><a href="register-farmer.html">Register as Farmer</a></li>
+                        <li><a href="register-buyer.html">Register as Buyer</a></li>
+                        <li><a href="login.html" class="active">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kishan Mitra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script  type="module" type="module" src="/view/js/storage.js"></script>
+    <script  type="module" type="module" src="/view/js/main.js"></script>
+    <script  type="module" type="module" src="/view/js/auth.js"></script>
+
+</body>
+</html>
